@@ -14,11 +14,23 @@ socklen_t perr_addrlen  = sizeof(perr_addr);
 void * myfunc (void *arg)
 {
 	char buf[64] = {};
+	struct message server_message = {0};
 	while(1)
 	{
-	    memset(buf,0,sizeof(buf));
-		recv((int)arg,buf,sizeof(buf),0);
-		printf("buf = %s\n",buf);
+	    memset(&server_message,0,sizeof(server_message));
+		recv((int)arg,&server_message,sizeof(server_message),0);
+		printf("cmd = %c\n",server_message.cmd);
+		printf("name = %s\n",server_message.name);
+		printf("password = %s\n",server_message.password);
+		printf("newpassword = %s\n",server_message.newpassword);
+		printf("message = %s\n",server_message.message);
+		printf("sex = %s\n",server_message.sex);
+		printf("age = %d\n",server_message.age);
+		printf("phone = %s\n",server_message.phone);
+		printf("addr = %s\n",server_message.addr);
+		
+		send((int)arg,"#",2,0);
+		
 	}
 }
 
