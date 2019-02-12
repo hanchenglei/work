@@ -32,22 +32,29 @@ void * myfunc (void *arg)
 		printf("addr = %s\n",server_message.addr);
 	   	
 		/*judge cmd and execute cmd method*/
-		/*
+
 		switch(server_message.cmd)
 		{
 			case 'R':
-				break；
+				if(mysql_insert(db,&server_message))
+				{
+				    printf("mysql_insert error\n");
+					send((int)arg,"*",2,0);
+					break;
+				}
+				printf("mysql_insert success\n");
+				send((int)arg,"#",2,0);
+				break;
 			case 'L':
-				break；
+				break;
 			case 'U':
-				break；
-			case 'S'：
-				break；
-			case 'F'：
-				break；
+				break;
+			case 'S':
+				break;
+			case 'F':
+				break;
 						
 		}
-		*/
 		//send((int)arg,"#",2,0);
 		
 	}
@@ -96,7 +103,7 @@ int main(void)
 	}
 
     /*create table*/
-    if(0 == mysql_create(db,"users"))
+    if(0 == mysql_create(db))
 	{
 		printf("create success\n");
 	}
