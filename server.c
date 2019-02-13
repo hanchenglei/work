@@ -45,8 +45,18 @@ void * myfunc (void *arg)
 				printf("mysql_insert success\n");
 				send((int)arg,"#",2,0);
 				break;
+				
 			case 'L':
+				if(1 == mysql_selcet(db,&server_message))
+				{
+				    printf("mysql_selcet success!\n");
+					send((int)arg,"#",2,0);
+					break;
+				}
+				printf("mysql_selcet error!\n");
+				send((int)arg,"*",2,0);
 				break;
+				
 			case 'U':
 				break;
 			case 'S':

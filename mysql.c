@@ -2,7 +2,7 @@
 
 
 
-int mysql_selcet(sqlite3 *db,const char *name,const char *passward)
+int mysql_selcet(sqlite3 *db,struct message *p)
 {
 	//查询
 	int nrow,ncolumn;
@@ -18,9 +18,9 @@ int mysql_selcet(sqlite3 *db,const char *name,const char *passward)
 	{
 		for(j=0;j<ncolumn;j++)
 		{
-			if(0 == strcmp(db_result[i+j],name))
+			if(0 == strcmp(db_result[i+j],p->name))
 			{
-				if(0 == strcmp(db_result[i+j+1],passward))
+				if(0 == strcmp(db_result[i+j+1],p->password))
 				{
 					return 1;
 				}
