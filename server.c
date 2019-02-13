@@ -58,6 +58,14 @@ void * myfunc (void *arg)
 				break;
 				
 			case 'U':
+				if(mysql_update(db,&server_message))
+				{
+					printf("mysql_update success!\n");
+					send((int)arg,"#",2,0);
+					break;
+				}
+				printf("mysql_update error!\n");
+				send((int)arg,"*",2,0);
 				break;
 			case 'S':
 				break;

@@ -1,6 +1,19 @@
 #include "mysql.h"
 
-
+int mysql_update(sqlite3 *db,struct message *p)
+{
+    //update database password base name
+    char buf[64] = {0};
+	memset(buf,0,sizeof(buf));
+	sprintf(buf,"update users set password='%s' where name='%s'",p->newpassword,p->name);
+	int ret = sqlite3_exec(db,buf,0,0,NULL);
+	if(ret != SQLITE_OK)
+	{
+		sqlite3_close(db);
+		return 0;
+	}
+	    return 1;
+}
 
 int mysql_selcet(sqlite3 *db,struct message *p)
 {

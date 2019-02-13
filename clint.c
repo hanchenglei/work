@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
 					if('#' == buf[0])
 					{
 						printf("update success\n");
-						break;
+						goto login_exit;
 					}
 					else
 					{

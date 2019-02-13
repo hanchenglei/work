@@ -7,6 +7,7 @@
 #include <string.h>
 #include "head.h"
 
+int mysql_update(sqlite3 *db,struct message *p);
 int mysql_insert(sqlite3 *pdb,struct message *p);
 int mysql_create(sqlite3 *pdb);
 int mysql_open(char *filename,sqlite3 **ppdb);
